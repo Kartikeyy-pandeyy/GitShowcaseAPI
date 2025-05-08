@@ -2,9 +2,9 @@
 
 A full-stack serverless web app to showcase GitHub developer profiles — including top repositories, total stars, commits, and activity — powered by AWS and the GitHub API.
 
-## 🚀 Live Demo
+## 🚀 Live Demo.
 
-Visit: [gitshowcaseapi.work.gd](https://d3tbtv7bxs3vbw.cloudfront.net)
+Visit: [Cloudfront](https://d3tbtv7bxs3vbw.cloudfront.net)
 
 ---
 
