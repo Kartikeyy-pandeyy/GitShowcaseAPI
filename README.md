@@ -4,7 +4,7 @@ A full-stack serverless web app to showcase GitHub developer profiles — includ
 
 ## 🚀 Live Demo.
 
-Visit: [Cloudfront](https://d3tbtv7bxs3vbw.cloudfront.net)
+Visit: [Cloudfront Distribution](https://d3tbtv7bxs3vbw.cloudfront.net)
 
 ---
 
