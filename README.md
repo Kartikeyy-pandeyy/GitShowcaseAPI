@@ -90,7 +90,7 @@ Every push to the `main` branch triggers a GitHub Actions workflow that:
 }
 ```
 
-## 🧪 Sample Input 
+## 🧪 Sample Input   
 
 ```
 POST /register
