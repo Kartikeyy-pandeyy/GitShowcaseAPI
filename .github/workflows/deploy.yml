@@ -1,0 +1,28 @@
+name: Deploy to S3 via Lambda
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Invoke Deployment Lambda Function
+      env:
+        AWS_REGION: us-east-1
+        FUNCTION_NAME: GitShowcaseFrontendDeployer
+      run: |
+        aws lambda invoke \
+          --function-name "$FUNCTION_NAME" \
+          --region "$AWS_REGION" \
+          --payload '{}' \
+          response.json
+
+    - name: Show Lambda Response
+      run: cat response.json
