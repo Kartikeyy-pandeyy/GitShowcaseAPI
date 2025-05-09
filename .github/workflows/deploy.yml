@@ -13,16 +13,24 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v3
 
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1
+
     - name: Invoke Deployment Lambda Function
       env:
-        AWS_REGION: us-east-1
-        FUNCTION_NAME: GitShowcaseFrontendDeployer
+        FUNCTION_NAME: GitShowcaseDeployLambda
       run: |
         aws lambda invoke \
           --function-name "$FUNCTION_NAME" \
-          --region "$AWS_REGION" \
           --payload '{}' \
-          response.json
+          response.json \
+          --cli-binary-format raw-in-base64-out
 
     - name: Show Lambda Response
-      run: cat response.json
+      run: |
+        echo "Lambda Response:"
+        cat response.json
