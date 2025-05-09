@@ -1,81 +1,142 @@
-# GitShowcaseAPI 🌐
+GitShowcaseAPI 🌐
+A full-stack, serverless web app to showcase GitHub developer profiles — with top repositories, stars, commits, and real-time activity — built entirely on AWS and the GitHub API.
 
-A full-stack serverless web app to showcase GitHub developer profiles — including top repositories, total stars, commits, and activity — powered by AWS and the GitHub API.
+🚀 Live Demo
+🟢 Live at: CloudFront Distribution
 
-## 🚀 Live Demo.
+🧩 Features
 
-Visit: [Cloudfront Distribution](https://d3tbtv7bxs3vbw.cloudfront.net)
+🔍 Register any GitHub username
+🌟 Display top repositories by stars
+📊 Show total stars, commits, and public repositories
+⏱️ Track recent GitHub activity (last seen date)
+🔁 Hourly data refresh with AWS EventBridge
+🖼️ Clean, responsive static frontend deployed via CDN
 
----
 
-## 🧩 Feature
+📦 Tech Stack
+🖥️ Frontend
 
-- 🔍 Register any GitHub username
-- 🌟 Show top repositories by stars
-- 🧮 Track total stars, commits, repos
-- ⏱️ See last activity date
-- 🔁 Background data refresh every hour (via AWS EventBridge)
-- 🖼️ Clean and responsive frontend
+HTML, CSS, JavaScript
+Hosted on AWS S3
+Delivered through AWS CloudFront
 
----
+⚙️ Backend
 
-## 📦 Tech Stack
+AWS Lambda — serverless compute:
+/register: Fetches GitHub user data and stores it
+/showcase: Serves stored profile data
 
-### Frontend
 
-- HTML + CSS + JS
-- Hosted on AWS S3
-- Delivered via AWS CloudFront CDN
+AWS API Gateway — RESTful interface for Lambda
+AWS DynamoDB — Stores user metadata and cache
+AWS EventBridge — Triggers automatic hourly updates
+AWS Secrets Manager — Safely stores GitHub API token
+GitHub API — Primary data source
 
-### Backend
 
-- **AWS API Gateway** – public REST API endpoints
-- **AWS Lambda** – serverless compute for:
-  - `/register` – fetches and stores GitHub data
-  - `/showcase` – retrieves stored data
-- **AWS DynamoDB** – persistent GitHub user data storage
-- **AWS EventBridge** – schedules hourly GitHub data refresh
-- **GitHub API** – source of public GitHub profile data
+🔄 CI/CD Deployment (Lambda + S3)
+✅ Automated Deployment on Push
+Every push to the main branch triggers a GitHub Actions workflow that:
 
----
+Invokes an AWS Lambda function
+Downloads the latest frontend files from GitHub
+Uploads them to your S3 bucket
+Invalidates the CloudFront cache to reflect changes instantly
 
-## 📸 Screenshots
+📁 Workflow File: .github/workflows/deploy.yml
+name: Deploy to S3 via Lambda
 
-> _You can add screenshots of the live site here_
+on:
+  push:
+    branches:
+      - main
 
----
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
 
-## 🛠️ Local Development
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
 
-To run locally:
+    - name: Invoke Deployment Lambda Function
+      env:
+        AWS_REGION: us-east-1
+        FUNCTION_NAME: GitShowcaseFrontendDeployer
+      run: |
+        aws lambda invoke \
+          --function-name "$FUNCTION_NAME" \
+          --region "$AWS_REGION" \
+          --payload '{}' \
+          response.json
 
-1. Clone the repo:
-   ```bash
-   git clone https://github.com/yourusername/gitshowcaseapi.git
-   cd gitshowcaseapi
-   ```
+    - name: Show Lambda Response
+      run: cat response.json
 
-2. Open `index.html` in your browser.
 
----
+📌 Make sure your GitHub repository has AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY stored as secrets.
 
-## 🔧 AWS Architecture Overview
 
-```plaintext
-GitHub User -> Frontend (S3/CloudFront) -> API Gateway
-                ↘︎                         ↙︎
-                 Lambda (/register, /showcase)
-                        ↕
-                    DynamoDB
-                        ⬆
-              EventBridge (Hourly Trigger)
-```
+📂 Repository Structure
+├── index.html             # Main UI
+├── script.js              # Frontend logic
+├── style.css              # Custom styling
+├── .github/
+│   └── workflows/
+│       └── deploy.yml     # CI/CD GitHub Action
+├── lambda/
+│   └── deploy_function.py # AWS Lambda source (for S3 deploy + CF invalidation)
 
----
 
-## 🧪 Example Output
+📸 Screenshots
 
-```json
+(Add preview images of your UI here)Example: Homepage, user showcase, responsive view, etc.
+
+
+🛠️ Local Development
+
+Clone the repository:
+git clone https://github.com/yourusername/gitshowcaseapi.git
+cd gitshowcaseapi
+
+
+Open index.html in a browser.
+
+
+
+🧠 AWS Architecture Diagram
++---------------------+
+|     CloudFront      |
+| (CDN Distribution)  |
++---------+-----------+
+          |
+          v
+     +----+----+             +-----------------+
+     |   S3     |<-----------| GitHub Repo     |
+     | (Static  |   Deploys  | via Lambda CI/CD|
+     | Frontend)|            +-----------------+
+          |
+          v
+   +------+--------+
+   |  API Gateway  |
+   +------+--------+
+          |
+  +-------+--------+
+  |    Lambda       |
+  |  /register      |
+  |  /showcase      |
+  +-------+--------+
+          |
+          v
+      DynamoDB
+          ^
+          |
+     EventBridge
+   (Hourly Trigger)
+
+
+🧪 Example Showcase Output
 {
   "username": "octocat",
   "name": "The Octocat",
@@ -95,25 +156,19 @@ GitHub User -> Frontend (S3/CloudFront) -> API Gateway
   "total_repos": 10,
   "last_seen": "2024-05-04T15:21:33Z"
 }
-```
 
----
 
-## 🧠 Future Enhancements
+🧠 Future Enhancements
 
-- 🌈 UI redesign with Tailwind or React
-- 🧾 GitHub contribution graph
-- 🗂️ Filtering and searching public repos
-- 🧪 Unit testing Lambda functions
+🌈 Upgrade frontend to React or Next.js
+📈 Visual contribution graphs (GitHub heatmaps)
+🔍 Public repo search + filters
+🧪 Add tests to Lambda functions
+🪄 Slack/Discord bot integration to display profiles
 
----
 
-## 🙌 Credits
+🙌 Author & Credits
+Built with 💻 and ☕ by Your NameSpecial thanks to GitHub, AWS, and OpenAI for the tools and APIs.
 
-Built with 💻 by [Your Name]
-
----
-
-## 📄 License
-
-MIT
+📄 License
+MIT License – Use freely, credit appreciated.
