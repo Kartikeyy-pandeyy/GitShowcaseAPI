@@ -1,110 +1,105 @@
-GitShowcaseAPI 🌐
-A full-stack, serverless web app to showcase GitHub developer profiles — with top repositories, stars, commits, and real-time activity — built entirely on AWS and the GitHub API.
 
-🚀 Live Demo
-🟢 Live at: CloudFront Distribution
+# 🌐 GitShowcaseAPI
 
-🧩 Features
+A full-stack, serverless web application to showcase GitHub developer profiles, including top repositories, total stars, commit counts, and real-time activity — all powered by the GitHub API and hosted entirely on AWS.
 
-🔍 Register any GitHub username
-🌟 Display top repositories by stars
-📊 Show total stars, commits, and public repositories
-⏱️ Track recent GitHub activity (last seen date)
-🔁 Hourly data refresh with AWS EventBridge
-🖼️ Clean, responsive static frontend deployed via CDN
+### 🚀 Live Demo  
+🟢 Hosted via AWS CloudFront (CDN): [https://d3tbtv7bxs3vbw.cloudfront.net](https://d3tbtv7bxs3vbw.cloudfront.net)
 
+---
 
-📦 Tech Stack
-🖥️ Frontend
+## 🧩 Features
 
-HTML, CSS, JavaScript
-Hosted on AWS S3
-Delivered through AWS CloudFront
+- 🔍 Register any GitHub username
+- 🌟 Display top repositories sorted by stars
+- 📊 Show total stars, commits, and public repositories
+- ⏱️ Track recent GitHub activity (last seen date)
+- 🔁 Hourly data refresh via AWS EventBridge
+- 🖼️ Clean, responsive UI hosted on CDN
 
-⚙️ Backend
+---
 
-AWS Lambda — serverless compute:
-/register: Fetches GitHub user data and stores it
-/showcase: Serves stored profile data
+## 📦 Tech Stack
 
+### Frontend
 
-AWS API Gateway — RESTful interface for Lambda
-AWS DynamoDB — Stores user metadata and cache
-AWS EventBridge — Triggers automatic hourly updates
-AWS Secrets Manager — Safely stores GitHub API token
-GitHub API — Primary data source
+- HTML, CSS, JavaScript
+- AWS S3 (static hosting)
+- AWS CloudFront (CDN delivery)
 
+### Backend
 
-🔄 CI/CD Deployment (Lambda + S3)
-✅ Automated Deployment on Push
-Every push to the main branch triggers a GitHub Actions workflow that:
+- AWS Lambda (compute)
+  - `/register` — fetches and caches GitHub user data
+  - `/showcase` — serves cached profile data
+- AWS API Gateway (REST interface)
+- AWS DynamoDB (data storage)
+- AWS EventBridge (hourly refresh trigger)
+- AWS Secrets Manager (secure API token storage)
+- GitHub API (primary data source)
 
-Invokes an AWS Lambda function
-Downloads the latest frontend files from GitHub
-Uploads them to your S3 bucket
-Invalidates the CloudFront cache to reflect changes instantly
+---
 
-📁 Workflow File: .github/workflows/deploy.yml
-name: Deploy to S3 via Lambda
+## 🔄 CI/CD Deployment
 
-on:
-  push:
-    branches:
-      - main
+Every push to the `main` branch triggers a GitHub Actions workflow that:
 
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
+- Invokes a deployment Lambda function
+- Pulls the latest frontend from GitHub
+- Uploads it to the S3 bucket
+- Invalidates CloudFront cache for immediate update
 
-    steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v3
+> GitHub secrets must include your AWS access credentials (`AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`).
 
-    - name: Invoke Deployment Lambda Function
-      env:
-        AWS_REGION: us-east-1
-        FUNCTION_NAME: GitShowcaseFrontendDeployer
-      run: |
-        aws lambda invoke \
-          --function-name "$FUNCTION_NAME" \
-          --region "$AWS_REGION" \
-          --payload '{}' \
-          response.json
+---
 
-    - name: Show Lambda Response
-      run: cat response.json
+## 🧠 AWS Architecture Overview
 
+- **CloudFront** serves the frontend globally via CDN
+- **S3** stores static frontend files
+- **GitHub Actions** triggers deployments via Lambda
+- **API Gateway** routes HTTP calls to backend Lambdas
+- **Lambda Functions** handle user registration and profile data retrieval
+- **DynamoDB** stores and caches user/repo data
+- **EventBridge** runs scheduled data refresh tasks
+- **Secrets Manager** secures your GitHub API token
 
-📌 Make sure your GitHub repository has AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY stored as secrets.
+---
 
+## 🧪 Sample Output
 
-📂 Repository Structure
-├── index.html             # Main UI
-├── script.js              # Frontend logic
-├── style.css              # Custom styling
-├── .github/
-│   └── workflows/
-│       └── deploy.yml     # CI/CD GitHub Action
-├── lambda/
-│   └── deploy_function.py # AWS Lambda source (for S3 deploy + CF invalidation)
+```
+{
+  "username": "octocat",
+  "name": "The Octocat",
+  "avatar_url": "https://avatars.githubusercontent.com/u/583231?v=4",
+  "bio": "This is a GitHub bio",
+  "top_repos": [
+    {
+      "name": "cool-project",
+      "stars": 120,
+      "forks": 30,
+      "url": "https://github.com/octocat/cool-project",
+      "commits": 42
+    }
+  ],
+  "total_stars": 340,
+  "total_commits": 523,
+  "total_repos": 10,
+  "last_seen": "2024-05-04T15:21:33Z"
+}
+```
 
+## 🧪 Sample Input
 
-📸 Screenshots
+```
+POST /register
+{
+  "username": "octocat"
+}
+```
 
-(Add preview images of your UI here)Example: Homepage, user showcase, responsive view, etc.
-
-
-🛠️ Local Development
-
-Clone the repository:
-git clone https://github.com/yourusername/gitshowcaseapi.git
-cd gitshowcaseapi
-
-
-Open index.html in a browser.
-
-
-
+---
 🧠 AWS Architecture Diagram
 +---------------------+
 |     CloudFront      |
@@ -135,40 +130,27 @@ Open index.html in a browser.
      EventBridge
    (Hourly Trigger)
 
+   ---
 
-🧪 Example Showcase Output
-{
-  "username": "octocat",
-  "name": "The Octocat",
-  "avatar_url": "https://avatars.githubusercontent.com/u/583231?v=4",
-  "bio": "This is a GitHub bio",
-  "top_repos": [
-    {
-      "name": "cool-project",
-      "stars": 120,
-      "forks": 30,
-      "url": "https://github.com/octocat/cool-project",
-      "commits": 42
-    }
-  ],
-  "total_stars": 340,
-  "total_commits": 523,
-  "total_repos": 10,
-  "last_seen": "2024-05-04T15:21:33Z"
-}
+## 🌱 Future Enhancements
 
+- 🌈 Migrate frontend to React or Next.js
+- 📈 Add GitHub-style contribution heatmaps
+- 🔍 Repo filtering and advanced search
+- 🧪 Add unit tests for Lambda logic
+- 🪄 Slack/Discord bot integration for profile sharing
 
-🧠 Future Enhancements
+---
 
-🌈 Upgrade frontend to React or Next.js
-📈 Visual contribution graphs (GitHub heatmaps)
-🔍 Public repo search + filters
-🧪 Add tests to Lambda functions
-🪄 Slack/Discord bot integration to display profiles
+## 🙌 Author & Credits
+
+Built by **Kartikey Pandey** and **Ritika Sharma** with 💻 and ☕.  
+Special thanks to **GitHub**, **AWS**, and **OpenAI** for their APIs and infrastructure.
+
+---
+
+## 📄 License
+
+**MIT License** — Free to use, with credit appreciated.
 
 
-🙌 Author & Credits
-Built with 💻 and ☕ by Your NameSpecial thanks to GitHub, AWS, and OpenAI for the tools and APIs.
-
-📄 License
-MIT License – Use freely, credit appreciated.
