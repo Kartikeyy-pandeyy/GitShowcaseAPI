@@ -8,7 +8,7 @@ Visit: [Cloudfront Distribution](https://d3tbtv7bxs3vbw.cloudfront.net)
 
 ---
 
-## 🧩 Features
+## 🧩 Feature
 
 - 🔍 Register any GitHub username
 - 🌟 Show top repositories by stars
