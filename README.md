@@ -101,34 +101,6 @@ POST /register
 
 ---
 🧠 AWS Architecture Diagram
-+---------------------+
-|     CloudFront      |
-| (CDN Distribution)  |
-+---------+-----------+
-          |
-          v
-     +----+----+             +-----------------+
-     |   S3     |<-----------| GitHub Repo     |
-     | (Static  |   Deploys  | via Lambda CI/CD|
-     | Frontend)|            +-----------------+
-          |
-          v
-   +------+--------+
-   |  API Gateway  |
-   +------+--------+
-          |
-  +-------+--------+
-  |    Lambda       |
-  |  /register      |
-  |  /showcase      |
-  +-------+--------+
-          |
-          v
-      DynamoDB
-          ^
-          |
-     EventBridge
-   (Hourly Trigger)
 
    ---
 
