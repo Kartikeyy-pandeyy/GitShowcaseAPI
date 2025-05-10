@@ -118,7 +118,7 @@ POST /register
 ## 🙌 Author & Credits
 
 Built by **Kartikey Pandey** and **Ritika Sharma** with 💻 and ☕.  
-Special thanks to **GitHub**, **AWS**, and **OpenAI** for their APIs and infrastructure.
+Special thanks to **GitHub** and **AWS** for their APIs and infrastructure.
 
 ---
 
