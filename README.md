@@ -101,6 +101,7 @@ POST /register
 
 ---
 🧠 AWS Architecture Diagram
+
 ![GitShowCaseAPI](https://github.com/user-attachments/assets/54aa061a-7444-4c19-937f-47720299ea4c)
 
    ---
