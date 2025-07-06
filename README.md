@@ -102,34 +102,8 @@ POST /register
 
 ---
 🧠 AWS Architecture Diagram
-+---------------------+
-|     CloudFront      |
-| (CDN Distribution)  |
-+---------+-----------+
-          |
-          v
-     +----+----+             +-----------------+
-     |   S3     |<-----------| GitHub Repo     |
-     | (Static  |   Deploys  | via Lambda CI/CD|
-     | Frontend)|            +-----------------+
-          |
-          v
-   +------+--------+
-   |  API Gateway  |
-   +------+--------+
-          |
-  +-------+--------+
-  |    Lambda       |
-  |  /register      |
-  |  /showcase      |
-  +-------+--------+
-          |
-          v
-      DynamoDB
-          ^
-          |
-     EventBridge
-   (Hourly Trigger)
+
+![GitShowCaseAPI](https://github.com/user-attachments/assets/54aa061a-7444-4c19-937f-47720299ea4c)
 
    ---
 
@@ -146,7 +120,7 @@ POST /register
 ## 🙌 Author & Credits
 
 Built by **Kartikey Pandey** and **Ritika Sharma** with 💻 and ☕.  
-Special thanks to **GitHub**, **AWS**, and **OpenAI** for their APIs and infrastructure.
+Special thanks to **GitHub** and **AWS** for their APIs and infrastructure.
 
 ---
 
