@@ -17,6 +17,7 @@ A full-stack, serverless web application to showcase GitHub developer profiles, 
 - 🔁 Hourly data refresh via AWS EventBridge
 - 🖼️ Clean, responsive UI hosted on CDN
 
+
 ---
 
 ## 📦 Tech Stack
