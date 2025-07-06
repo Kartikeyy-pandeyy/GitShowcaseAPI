@@ -3,1234 +3,697 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="GitShowcaseAPI - Build and share a professional GitHub portfolio effortlessly.">
+  <meta name="description" content="GitShowcaseAPI - Craft a futuristic GitHub portfolio instantly.">
   <meta property="og:title" content="GitShowcaseAPI - GitHub Portfolio">
-  <meta property="og:description" content="Transform your GitHub profile into a stunning portfolio in seconds.">
+  <meta property="og:description" content="Build a stunning, professional portfolio in seconds.">
   <meta property="og:image" content="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png">
   <meta property="og:url" content="https://gitshowcaseapi.com">
-  <title>GitShowcaseAPI - Professional GitHub Portfolio</title>
+  <title>GitShowcaseAPI</title>
   <link rel="icon" type="image/png" href="https://github.githubassets.com/favicons/favicon-dark.png">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
   <style>
     :root {
-      --bg: #0d1117; /* GitHub dark background */
-      --bg-secondary: #161b22; /* Card background */
-      --bg-tertiary: #21262d; /* Navbar/footer background */
-      --bg-code: #0d1117; /* Code block background */
-      --border: #30363d; /* GitHub border */
-      --text: #c9d1d9; /* Primary text */
-      --text-secondary: #8b949e; /* Secondary text */
-      --primary: #238636; /* GitHub green */
-      --primary-hover: #2ea043; /* Green hover */
-      --link: #58a6ff; /* GitHub blue link */
-      --link-hover: #79c0ff; /* Link hover */
-      --error: #f85149; /* Error red */
-      --success: #238636; /* Success green */
-      --shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-      --shadow-hover: 0 4px 16px rgba(0, 0, 0, 0.25);
-      --gradient-border: linear-gradient(45deg, #238636, #58a6ff);
-      --gradient-bg: linear-gradient(180deg, #161b22, #21262d);
+      --bg: #080c12;
+      --card-bg: rgba(26, 32, 44, 0.85);
+      --glass: rgba(20, 25, 35, 0.5);
+      --text: #e0e7ff;
+      --text-dim: #a0aec0;
+      --accent: #2ea043;
+      --link: #60a5fa;
+      --gradient: linear-gradient(135deg, #2ea043, #60a5fa);
+      --glow: 0 0 8px rgba(46, 160, 67, 0.5);
+      --shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
     }
 
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
+      scrollbar-width: thin;
+      scrollbar-color: var(--accent) var(--bg);
     }
 
     body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+      font-family: 'Inter', sans-serif;
       background: var(--bg);
-      background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"%3E%3Cg fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="0.05"%3E%3Cpath d="M96 95h4v1h-4v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4h-9v4h-1v-4H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15v-9H0v-1h15V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h9V0h1v15h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9h4v1h-4v9zm-1 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm9-10v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-10 0v-9h-9v9h9zm-9-10h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9zm10 0h9v-9h-9v9z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
-      background-size: 100px;
       color: var(--text);
-      font-size: 16px;
-      line-height: 1.6;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
-      min-height: 100vh;
+      line-height: 1.5;
+      position: relative;
       overflow-x: hidden;
     }
 
-    h1 { font-size: clamp(32px, 5vw, 40px); font-weight: 700; }
-    h2 { font-size: clamp(28px, 4vw, 32px); font-weight: 600; }
-    h3 { font-size: clamp(24px, 3.5vw, 28px); font-weight: 600; }
-    h4 { font-size: clamp(18px, 2.5vw, 20px); font-weight: 500; }
-
-    a { color: var(--link); text-decoration: none; }
-    a:hover { color: var(--link-hover); text-decoration: underline; }
+    canvas#stars {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      opacity: 0.9;
+    }
 
     .container {
-      width: clamp(90%, 75vw, 1200px);
+      max-width: 960px;
       margin: 0 auto;
-      padding: clamp(16px, 2vw, 24px);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      padding: 0 12px;
     }
 
-    /* Animations */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px) scale(0.98); }
-      to { opacity: 1; transform: translateY(0) scale(1); }
-    }
+    h1 { font-size: 2rem; font-weight: 700; }
+    h2 { font-size: 1.5rem; font-weight: 600; }
+    h3 { font-size: 1.2rem; font-weight: 600; }
 
-    .fade-in {
-      animation: fadeIn 0.6s ease-out forwards;
-      opacity: 0;
-    }
-
-    /* Navbar */
-    .navbar {
-      background: rgba(33, 38, 45, 0.95);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border);
-      padding: clamp(12px, 1.5vw, 16px) clamp(16px, 2vw, 24px);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      box-shadow: var(--shadow);
-    }
-
-    .navbar .container {
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0;
-    }
-
-    .navbar-logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .navbar-logo img {
-      width: clamp(32px, 4vw, 36px);
-      height: clamp(32px, 4vw, 36px);
-      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
-      transition: transform 0.4s ease;
-    }
-
-    .navbar-logo img:hover {
-      transform: rotate(360deg);
-    }
-
-    .navbar-logo span {
-      font-size: clamp(20px, 2.5vw, 24px);
-      font-weight: 700;
-      letter-spacing: 0.5px;
-    }
-
-    .navbar-links a {
-      margin-left: clamp(20px, 2vw, 28px);
-      font-size: clamp(14px, 1.8vw, 15px);
-      font-weight: 500;
-      transition: color 0.2s ease, transform 0.2s ease;
-    }
-
-    .navbar-links a:hover {
-      color: var(--primary);
-      transform: translateY(-1px);
-    }
-
-    .navbar-toggle {
-      display: none;
-      font-size: clamp(20px, 2.5vw, 24px);
-      cursor: pointer;
-      color: var(--text);
-      transition: transform 0.2s ease;
-    }
-
-    .navbar-toggle:hover {
-      transform: scale(1.1);
-    }
-
-    /* Card */
-    .card {
-      background: var(--gradient-bg);
-      border: 1px solid transparent;
-      border-image: var(--gradient-border) 1;
-      border-radius: 12px;
-      padding: clamp(24px, 3vw, 36px);
-      margin-bottom: clamp(32px, 4vw, 48px);
-      width: 100%;
-      box-shadow: var(--shadow);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-6px);
-      box-shadow: var(--shadow-hover);
-    }
-
-    /* Buttons */
-    .btn {
-      background: var(--primary);
-      color: #fff;
-      padding: clamp(10px, 1.5vw, 12px) clamp(20px, 2.5vw, 28px);
-      border-radius: 10px;
-      font-size: clamp(14px, 1.8vw, 15px);
-      font-weight: 500;
-      border: none;
-      cursor: pointer;
-      transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .btn:hover {
-      background: var(--primary-hover);
-      transform: scale(1.06);
-      box-shadow: 0 0 12px rgba(35, 134, 54, 0.5);
-    }
-
-    .btn:disabled {
-      background: var(--border);
-      cursor: not-allowed;
-      transform: none;
-      box-shadow: none;
-    }
-
-    .btn i {
-      font-size: clamp(14px, 1.8vw, 16px);
-    }
-
-    /* Inputs */
-    .input {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      color: var(--text);
-      padding: clamp(10px, 1.5vw, 12px) clamp(14px, 1.8vw, 18px);
-      border-radius: 10px;
-      width: 100%;
-      font-size: clamp(14px, 1.8vw, 15px);
-      transition: border-color 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .input:focus {
-      outline: none;
-      border-color: var(--link);
-      box-shadow: 0 0 0 4px rgba(88, 166, 255, 0.3);
-    }
-
-    /* Error and Success */
-    .error, .success {
-      font-size: clamp(13px, 1.6vw, 14px);
-      margin-top: 12px;
-      text-align: center;
-      padding: 12px;
-      border-radius: 8px;
-      display: none;
-    }
-
-    .error {
-      color: var(--error);
-      background: rgba(248, 81, 73, 0.2);
-    }
-
-    .success {
-      color: var(--success);
-      background: rgba(35, 134, 54, 0.2);
-    }
-
-    /* Loading */
-    .loading {
-      position: relative;
-      pointer-events: none;
-    }
-
-    .loading::after {
-      content: '';
-      position: absolute;
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      background: radial-gradient(circle, var(--primary) 50%, transparent 50%);
-      animation: pulse 1s ease-in-out infinite;
-      margin-left: 10px;
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(0.8); opacity: 0.7; }
-      50% { transform: scale(1.2); opacity: 1; }
-      100% { transform: scale(0.8); opacity: 0.7; }
-    }
-
-    /* Code Blocks */
-    pre {
-      background: var(--bg-code);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 20px;
-      font-family: 'Source Code Pro', monospace;
-      font-size: clamp(13px, 1.6vw, 14px);
-      color: var(--text);
-      position: relative;
-      overflow-x: auto;
-      margin: 16px 0;
-    }
-
-    pre code {
-      color: var(--text);
-    }
-
-    pre code::before {
-      content: '// JSON';
-      color: var(--text-secondary);
-      font-size: clamp(11px, 1.4vw, 12px);
-      display: block;
-      margin-bottom: 8px;
-    }
-
-    .copy-btn {
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      background: var(--bg-secondary);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 8px;
-      cursor: pointer;
-      transition: background 0.2s ease, transform 0.2s ease;
-    }
-
-    .copy-btn:hover, .copy-btn.copied {
-      background: var(--primary);
-      transform: scale(1.1);
-    }
-
-    .copy-btn i {
-      font-size: clamp(14px, 1.8vw, 16px);
-      color: var(--text);
-    }
-
-    /* Toast */
-    .toast {
-      position: fixed;
-      bottom: clamp(16px, 2vw, 24px);
-      right: clamp(16px, 2vw, 24px);
-      background: var(--bg-secondary);
-      border: 1px solid var(--border);
-      padding: clamp(12px, 1.5vw, 14px) clamp(20px, 2.5vw, 28px);
-      border-radius: 10px;
-      font-size: clamp(13px, 1.6vw, 14px);
-      color: var(--text);
-      box-shadow: var(--shadow);
-      opacity: 0;
-      transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-
-    .toast.show {
-      opacity: 1;
-      transform: translateY(-10px);
-    }
-
-    /* Stats Grid */
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: clamp(16px, 2vw, 20px);
-      width: 100%;
-      margin: clamp(20px, 2.5vw, 24px) 0;
-    }
-
-    .stat-card {
-      background: var(--gradient-bg);
-      border: 1px solid transparent;
-      border-image: var(--gradient-border) 1;
-      border-radius: 12px;
-      padding: clamp(20px, 2.5vw, 24px);
-      text-align: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .stat-card:hover {
-      transform: scale(1.05);
-      box-shadow: var(--shadow-hover);
-    }
-
-    .stat-card i {
-      font-size: clamp(28px, 3.5vw, 32px);
-      color: var(--primary);
-      margin-bottom: 12px;
-    }
-
-    .stat-card p {
-      font-size: clamp(16px, 2vw, 18px);
-      font-weight: 600;
-      color: var(--text);
-    }
-
-    .stat-card span {
-      font-size: clamp(12px, 1.5vw, 13px);
-      color: var(--text-secondary);
-    }
-
-    /* Repo Cards */
-    .preview-repos, .showcase-repos {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: clamp(16px, 2vw, 20px);
-      margin: clamp(20px, 2.5vw, 24px) 0;
-    }
-
-    .repo-card {
-      background: var(--gradient-bg);
-      border: 1px solid transparent;
-      border-image: var(--gradient-border) 1;
-      border-radius: 12px;
-      padding: clamp(16px, 2vw, 20px);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .repo-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-hover);
-    }
-
-    .repo-card a {
-      font-size: clamp(15px, 1.9vw, 16px);
-      font-weight: 500;
-      display: block;
-      margin-bottom: 12px;
-    }
-
-    .repo-stats {
-      display: flex;
-      gap: clamp(12px, 1.5vw, 16px);
-      font-size: clamp(13px, 1.6vw, 14px);
-      color: var(--text-secondary);
-      flex-wrap: wrap;
-    }
-
-    .repo-stats i {
-      margin-right: 4px;
-      color: var(--primary);
-    }
-
-    /* Preview Section */
-    .preview-profile {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-bottom: clamp(24px, 3vw, 32px);
-    }
-
-    .preview-avatar {
-      width: clamp(120px, 15vw, 140px);
-      height: clamp(120px, 15vw, 140px);
-      border-radius: 50%;
-      border: 4px solid transparent;
-      background: linear-gradient(45deg, var(--primary), var(--link)) padding-box, var(--gradient-border) border-box;
-      box-shadow: var(--shadow);
-      margin-bottom: 20px;
-      transition: transform 0.3s ease;
-    }
-
-    .preview-avatar:hover {
-      transform: scale(1.05);
-    }
-
-    .preview-bio {
-      max-width: 500px;
-      text-align: center;
-      color: var(--text-secondary);
-      font-size: clamp(14px, 1.8vw, 15px);
-    }
-
-    .preview-bio:empty::before {
-      content: 'No bio available';
-      font-style: italic;
-      color: var(--text-secondary);
-    }
-
-    /* Sections */
-    .section {
-      padding: clamp(64px, 8vw, 88px) clamp(16px, 2vw, 24px);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 100%;
-      border-bottom: 1px solid var(--border);
-    }
-
-    .section:last-child {
-      border-bottom: none;
-    }
-
-    .section h2 {
-      margin-bottom: clamp(32px, 4vw, 48px);
-      text-align: center;
-      position: relative;
-      background: linear-gradient(90deg, var(--primary), var(--primary-hover));
+    .gradient-text {
+      background: var(--gradient);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
     }
 
-    .section h2::after {
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .fade-in { opacity: 0; animation: fadeIn 0.4s ease-out forwards; }
+
+    nav {
+      background: var(--glass);
+      border-bottom: 1px solid var(--gradient);
+      backdrop-filter: blur(8px);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    nav .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 12px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    .nav-logo img {
+      width: 26px;
+      transition: transform 0.3s;
+    }
+
+    .nav-logo img:hover { transform: rotate(10deg) scale(1.1); }
+
+    .nav-links {
+      display: flex;
+      gap: 16px;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+
+    .nav-links a {
+      color: var(--text);
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--link); }
+
+    .nav-toggle {
+      display: none;
+      font-size: 1.2rem;
+      color: var(--text);
+      cursor: pointer;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--gradient);
+      border-radius: 8px;
+      padding: 16px;
+      box-shadow: var(--shadow), var(--glow);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow), 0 0 12px rgba(46, 160, 67, 0.7);
+    }
+
+    .btn {
+      background: var(--gradient);
+      color: #fff;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: transform 0.2s;
+    }
+
+    .btn:hover { transform: scale(1.05); }
+
+    .btn:disabled {
+      background: var(--text-dim);
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .input {
+      background: var(--bg);
+      border: 1px solid var(--text-dim);
+      color: var(--text);
+      padding: 8px 12px;
+      border-radius: 6px;
+      width: 100%;
+      font-size: 0.85rem;
+      transition: box-shadow 0.2s;
+    }
+
+    .input:focus {
+      outline: none;
+      box-shadow: var(--glow);
+    }
+
+    .message {
+      display: none;
+      font-size: 0.8rem;
+      padding: 6px;
+      border-radius: 6px;
+      text-align: center;
+      margin-top: 8px;
+    }
+
+    .error { color: #f87171; background: rgba(248, 113, 113, 0.1); }
+    .success { color: var(--accent); background: rgba(46, 160, 67, 0.1); }
+
+    .toast {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      background: var(--glass);
+      border: 1px solid var(--gradient);
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      opacity: 0;
+      backdrop-filter: blur(6px);
+      transition: opacity 0.3s;
+    }
+
+    .toast.show { opacity: 1; }
+
+    section {
+      padding: 32px 12px;
+      text-align: center;
+    }
+
+    section h2::after {
       content: '';
-      width: 80px;
-      height: 4px;
-      background: var(--gradient-border);
+      width: 40px;
+      height: 2px;
+      background: var(--gradient);
       position: absolute;
-      bottom: -16px;
+      bottom: -4px;
       left: 50%;
       transform: translateX(-50%);
-      border-radius: 2px;
     }
 
-    /* Features Grid */
     .features-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: clamp(20px, 2.5vw, 28px);
-      width: 100%;
-    }
-
-    .feature-card {
-      background: var(--gradient-bg);
-      border: 1px solid transparent;
-      border-image: var(--gradient-border) 1;
-      border-radius: 12px;
-      padding: clamp(24px, 3vw, 28px);
-      text-align: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .feature-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-hover);
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
     }
 
     .feature-card i {
-      font-size: clamp(36px, 4.5vw, 40px);
-      color: var(--primary);
-      margin-bottom: 20px;
-      transition: transform 0.3s ease;
+      font-size: 1.5rem;
+      color: var(--accent);
+      margin-bottom: 8px;
     }
 
-    .feature-card:hover i {
-      transform: scale(1.15);
+    .preview-card {
+      background: linear-gradient(180deg, var(--card-bg), rgba(26, 32, 44, 0.7));
+      max-width: 720px;
+      margin: 0 auto;
     }
 
-    /* Showcase Example */
-    .showcase-example {
+    .preview-header {
+      border-bottom: 1px solid var(--gradient);
+      padding-bottom: 16px;
+      margin-bottom: 16px;
+    }
+
+    .preview-header img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 2px solid var(--gradient);
+      margin-bottom: 8px;
+      transition: transform 0.3s;
+    }
+
+    .preview-header img:hover { transform: scale(1.05); }
+
+    .preview-header h3 { margin-bottom: 8px; }
+
+    .preview-bio {
+      color: var(--text-dim);
+      font-size: 0.9rem;
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    .preview-bio:empty::before { content: 'No bio'; font-style: italic; }
+
+    .stats-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+      margin: 16px 0;
+    }
+
+    .stat-card {
+      padding: 12px;
+      min-width: 120px;
+      text-align: center;
+    }
+
+    .stat-card i {
+      font-size: 1.4rem;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    .stat-card p {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .stat-card span {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+    }
+
+    .repos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .repo-card a {
+      color: var(--link);
+      font-size: 1rem;
+      font-weight: 500;
+    }
+
+    .repo-card a:hover { text-decoration: underline; }
+
+    .repo-stats {
+      display: flex;
+      gap: 12px;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      margin-top: 8px;
+    }
+
+    .repo-stats i { color: var(--accent); }
+
+    pre {
+      background: var(--bg);
+      border: 1px solid var(--text-dim);
+      border-radius: 6px;
+      padding: 10px;
+      font-size: 0.75rem;
+      overflow-x: auto;
+      position: relative;
       text-align: left;
     }
 
-    .showcase-profile {
-      display: flex;
-      align-items: center;
-      gap: clamp(16px, 2vw, 24px);
-      margin-bottom: clamp(24px, 3vw, 32px);
+    .copy-btn {
+      position: absolute;
+      top: 4px;
+      right: 4px;
+      background: none;
+      border: none;
+      color: var(--text-dim);
+      cursor: pointer;
+      padding: 4px;
     }
 
-    .showcase-avatar {
-      width: clamp(80px, 10vw, 100px);
-      height: clamp(80px, 10vw, 100px);
-      border-radius: 50%;
-      border: 3px solid var(--border);
+    .copy-btn:hover { color: var(--accent); }
+
+    .faq-item details {
+      background: var(--card-bg);
+      border: 1px solid var(--gradient);
+      border-radius: 6px;
+      margin-bottom: 6px;
+      box-shadow: var(--shadow), var(--glow);
+      transition: transform 0.3s, box-shadow 0.3s;
     }
 
-    /* FAQs */
-    .faq-item {
-      margin-bottom: clamp(16px, 2vw, 24px);
-      width: 100%;
+    .faq-item details:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow), 0 0 12px rgba(46, 160, 67, 0.7);
     }
 
     .faq-item summary {
+      padding: 8px;
       cursor: pointer;
-      font-weight: 600;
-      padding: clamp(12px, 1.5vw, 16px);
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      transition: background 0.2s ease, transform 0.2s ease;
-    }
-
-    .faq-item summary:hover {
-      background: var(--bg-secondary);
-      transform: translateY(-2px);
+      font-weight: 500;
     }
 
     .faq-item p {
-      color: var(--text-secondary);
-      padding: clamp(12px, 1.5vw, 16px);
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-top: none;
-      border-radius: 0 0 10px 10px;
+      padding: 8px;
+      color: var(--text-dim);
+      border-top: 1px solid var(--text-dim);
     }
 
-    /* CTA */
-    .cta-section {
-      background: var(--gradient-bg);
-      padding: clamp(64px, 8vw, 88px) clamp(16px, 2vw, 24px);
-      text-align: center;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      width: 100%;
-    }
-
-    .cta-section .container {
-      align-items: center;
-    }
-
-    /* Footer */
     footer {
-      background: var(--bg-tertiary);
-      padding: clamp(32px, 4vw, 48px);
-      text-align: center;
-      font-size: clamp(13px, 1.6vw, 14px);
-      color: var(--text-secondary);
+      background: var(--glass);
+      padding: 16px;
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      border-top: 1px solid var(--gradient);
+      backdrop-filter: blur(8px);
       margin-top: auto;
-      border-top: 1px solid var(--border);
-      width: 100%;
     }
 
-    footer .container {
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    footer a {
-      margin: 0 clamp(8px, 1vw, 12px);
-      transition: color 0.2s ease, transform 0.2s ease;
-    }
-
-    footer a:hover {
-      color: var(--primary);
-      transform: scale(1.1);
-    }
-
-    .footer-social i {
-      font-size: clamp(18px, 2.2vw, 20px);
-      margin: 0 8px;
-    }
-
-    /* Responsive */
-    @media (max-width: 1200px) {
-      .container {
-        width: 85vw;
-      }
-      .stats-grid {
-        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      }
-    }
-
-    @media (max-width: 1024px) {
-      .container {
-        width: 90vw;
-        padding: clamp(12px, 1.5vw, 16px);
-      }
-      .navbar-links { display: none; }
-      .navbar-toggle { display: block; }
-      .navbar-links.active {
-        display: flex;
-        flex-direction: column;
-        position: absolute;
-        top: 60px;
-        left: 0;
-        right: 0;
-        background: var(--bg-tertiary);
-        border-bottom: 1px solid var(--border);
-        padding: clamp(12px, 1.5vw, 16px);
-        box-shadow: var(--shadow);
-        animation: slideIn 0.3s ease-out;
-      }
-      .navbar-links.active a {
-        margin: clamp(8px, 1vw, 12px) 0;
-      }
-      .features-grid {
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      }
-      .preview-repos, .showcase-repos {
-        grid-template-columns: 1fr;
-      }
-    }
+    footer a { color: var(--link); }
+    footer a:hover { color: var(--accent); }
 
     @media (max-width: 768px) {
-      .container {
-        width: 95vw;
-        padding: clamp(10px, 1.2vw, 12px);
+      h1 { font-size: 1.75rem; }
+      h2 { font-size: 1.25rem; }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 52px;
+        left: 0;
+        right: 0;
+        background: var(--glass);
+        flex-direction: column;
+        padding: 12px;
+        backdrop-filter: blur(8px);
       }
-      h1 { font-size: clamp(28px, 4vw, 32px); }
-      h2 { font-size: clamp(24px, 3.5vw, 28px); }
-      h3 { font-size: clamp(20px, 3vw, 24px); }
-      .card { padding: clamp(20px, 2.5vw, 24px); margin-bottom: clamp(24px, 3vw, 32px); }
-      .btn { padding: clamp(8px, 1vw, 10px) clamp(16px, 2vw, 20px); font-size: clamp(13px, 1.6vw, 14px); }
-      .input { padding: clamp(8px, 1vw, 10px) clamp(12px, 1.5vw, 14px); font-size: clamp(13px, 1.6vw, 14px); }
-      .section { padding: clamp(48px, 6vw, 64px) clamp(12px, 1.5vw, 16px); }
-      .features-grid { grid-template-columns: 1fr; }
-      .stats-grid { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
-      .showcase-profile { flex-direction: column; align-items: flex-start; gap: clamp(12px, 1.5vw, 16px); }
-      .preview-avatar { width: clamp(100px, 12vw, 120px); height: clamp(100px, 12vw, 120px); }
-      .showcase-avatar { width: clamp(64px, 8vw, 80px); height: clamp(64px, 8vw, 80px); }
+      .nav-links.active { display: flex; }
+      .nav-toggle { display: block; }
+      section { padding: 24px 8px; }
+      .features-grid, .repos-grid { grid-template-columns: 1fr; }
+      .stats-row { flex-direction: column; align-items: center; }
     }
 
     @media (max-width: 480px) {
-      .container {
-        width: 100%;
-        padding: clamp(8px, 1vw, 10px);
-      }
-      .navbar { padding: clamp(8px, 1vw, 10px) clamp(12px, 1.5vw, 16px); }
-      .navbar-logo img { width: clamp(28px, 3.5vw, 32px); height: clamp(28px, 3.5vw, 32px); }
-      .navbar-logo span { font-size: clamp(18px, 2.2vw, 20px); }
-      .section { padding: clamp(32px, 4vw, 48px) clamp(8px, 1vw, 12px); }
-      .card { padding: clamp(16px, 2vw, 20px); margin-bottom: clamp(16px, 2vw, 24px); }
-      .btn { padding: clamp(6px, 0.8vw, 8px) clamp(12px, 1.5vw, 16px); }
-      .input { padding: clamp(6px, 0.8vw, 8px) clamp(10px, 1.2vw, 12px); }
-      h1 { font-size: clamp(26px, 3.5vw, 28px); }
-      h2 { font-size: clamp(22px, 3vw, 24px); }
-      .stats-grid { grid-template-columns: 1fr; }
-      .toast { right: clamp(12px, 1.5vw, 16px); bottom: clamp(12px, 1.5vw, 16px); padding: clamp(10px, 1.2vw, 12px) clamp(16px, 2vw, 20px); }
-      .preview-avatar { width: clamp(80px, 10vw, 100px); height: clamp(80px, 10vw, 100px); }
-    }
-
-    @keyframes slideIn {
-      from { transform: translateY(-20px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
+      h1 { font-size: 1.5rem; }
+      h2 { font-size: 1.1rem; }
+      .card { padding: 12px; }
+      .btn { padding: 6px 12px; font-size: 0.8rem; }
+      .input { padding: 6px 10px; font-size: 0.8rem; }
+      .preview-header img { width: 64px; height: 64px; }
     }
   </style>
 </head>
 <body>
+  <canvas id="stars"></canvas>
   <noscript>
-    <div class="container" style="text-align: center; padding: 32px; color: var(--error);">
-      <p>Please enable JavaScript to use GitShowcaseAPI.</p>
-    </div>
+    <div class="container text-center p-6 error">Enable JavaScript for GitShowcaseAPI.</div>
   </noscript>
 
-  <!-- Navbar -->
-  <nav class="navbar">
+  <nav>
     <div class="container">
-      <div class="navbar-logo">
+      <div class="nav-logo">
         <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub Logo" loading="lazy">
         <span>GitShowcaseAPI</span>
       </div>
-      <div class="navbar-links">
+      <div class="nav-links">
         <a href="#features">Features</a>
         <a href="#register">Get Started</a>
         <a href="#api">API Docs</a>
         <a href="#faqs">FAQs</a>
       </div>
-      <div class="navbar-toggle" onclick="toggleNavbar()">
-        <i class="fas fa-bars"></i>
-      </div>
+      <i class="fas fa-bars nav-toggle" onclick="toggleNav()"></i>
     </div>
   </nav>
 
   <main>
-    <!-- Name -->
-    <div class="container fade-in" style="text-align: center; padding: clamp(32px, 4vw, 48px) clamp(16px, 2vw, 24px);">
-      <h1>GitShowcaseAPI</h1>
-    </div>
-
-    <!-- Features Section -->
-    <section id="features" class="section fade-in">
-      <h2>Powerful Features</h2>
-      <div class="features-grid">
-        <div class="card feature-card">
-          <i class="fas fa-bolt"></i>
-          <h4>Instant Setup</h4>
-          <p style="color: var(--text-secondary);">Create your portfolio with a single click using your GitHub username.</p>
-        </div>
-        <div class="card feature-card">
-          <i class="fas fa-sync"></i>
-          <h4>Real-Time Sync</h4>
-          <p style="color: var(--text-secondary);">Your portfolio updates hourly to reflect your latest GitHub activity.</p>
-        </div>
-        <div class="card feature-card">
-          <i class="fas fa-code"></i>
-          <h4>Easy Embedding</h4>
-          <p style="color: var(--text-secondary);">Embed your portfolio on any website with a simple iframe.</p>
-        </div>
-      </div>
+    <section class="container py-10 fade-in">
+      <h1 class="gradient-text">GitShowcaseAPI</h1>
+      <p style="color: var(--text-dim); max-width: 480px; margin: 8px auto; font-size: 0.95rem;">
+        Craft a futuristic portfolio from your GitHub profile.
+      </p>
+      <a href="#register" class="btn"><i class="fas fa-rocket"></i> Create Now</a>
     </section>
 
-    <!-- Register Section -->
-    <section id="register" class="section fade-in">
-      <h2>Create Your Portfolio</h2>
-      <div class="card">
-        <label for="username" style="display: block; margin-bottom: 12px; font-weight: 500;">GitHub Username</label>
-        <input type="text" id="username" placeholder="e.g. Kartikeyy-pandeyy, xitikx..." class="input" aria-label="Enter GitHub username">
-        <button id="register-btn" onclick="register()" onkeypress="if(event.key === 'Enter') register()" class="btn" style="width: 100%; margin: 20px 0;" aria-label="Register profile"><i class="fas fa-user-plus"></i> Register</button>
-        <p id="message" style="text-align: center; color: var(--text-secondary); font-size: clamp(13px, 1.6vw, 14px);"></p>
-        <div id="error" class="error"></div>
-        <div id="success" class="success"></div>
-        <button id="preview-btn" onclick="previewProfile()" onkeypress="if(event.key === 'Enter') previewProfile()" class="btn hidden" style="width: 100%;" aria-label="Preview portfolio"><i class="fas fa-eye"></i> Preview Portfolio</button>
-      </div>
-    </section>
-
-    <!-- Preview Section -->
-    <section id="preview" class="section hidden fade-in">
-      <h2>Portfolio Preview</h2>
-      <div class="card">
-        <div class="preview-profile">
-          <img id="preview-avatar" src="" alt="User Avatar" class="preview-avatar" loading="lazy">
-          <h3 id="preview-name" style="margin-bottom: 16px;"></h3>
-          <p id="preview-bio" class="preview-bio"></p>
-        </div>
-        <div class="stats-grid">
-          <div class="stat-card">
-            <i class="fas fa-star"></i>
-            <p id="preview-stars">0</p>
-            <span>Total Stars</span>
-          </div>
-          <div class="stat-card">
-            <i class="fas fa-book"></i>
-            <p id="preview-repos">0</p>
-            <span>Total Repos</span>
-          </div>
-          <div class="stat-card">
-            <i class="fas fa-code"></i>
-            <p id="preview-commits">0</p>
-            <span>Total Commits</span>
-          </div>
-          <div class="stat-card">
-            <i class="fas fa-clock"></i>
-            <p id="preview-last-seen">Unknown</p>
-            <span>Last Seen</span>
-          </div>
-        </div>
-        <div id="preview-repos" class="preview-repos"></div>
-      </div>
-    </section>
-
-    <!-- Showcase Example Section -->
-    <section class="section fade-in">
-      <h2>Example Portfolio</h2>
-      <div class="card showcase-example">
-        <div class="showcase-profile">
-          <img src="https://avatars.githubusercontent.com/u/114774483?v=4" alt="Kartikey Pandey Avatar" class="showcase-avatar" loading="lazy">
-          <div>
-            <h3>Kartikey Pandey</h3>
-            <p style="color: var(--text-secondary); font-size: clamp(13px, 1.6vw, 14px); max-width: 400px;">Always Learning & Building</p>
-          </div>
-        </div>
-        <div class="stats-grid">
-          <div class="stat-card">
-            <i class="fas fa-star"></i>
-            <p>10</p>
-            <span>Total Stars</span>
-          </div>
-          <div class="stat-card">
-            <i class="fas fa-book"></i>
-            <p>15</p>
-            <span>Total Repos</span>
-          </div>
-          <div class="stat-card">
-            <i class="fas fa-code"></i>
-            <p>172</p>
-            <span>Total Commits</span>
-          </div>
-          <div class="stat-card">
-            <i class="fas fa-clock"></i>
-            <p>May 5, 2025</p>
-            <span>Last Seen</span>
-          </div>
-        </div>
-        <div class="showcase-repos">
-          <div class="repo-card">
-            <a href="https://github.com/Kartikeyy-pandeyy/kartikeycare" target="_blank">kartikeycare</a>
-            <div class="repo-stats">
-              <span><i class="fas fa-star"></i> 2</span>
-              <span><i class="fas fa-code-branch"></i> 0</span>
-              <span><i class="fas fa-code"></i> 24</span>
-            </div>
-          </div>
-          <div class="repo-card">
-            <a href="https://github.com/Kartikeyy-pandeyy/portfolio" target="_blank">portfolio</a>
-            <div class="repo-stats">
-              <span><i class="fas fa-star"></i> 2</span>
-              <span><i class="fas fa-code-branch"></i> 0</span>
-              <span><i class="fas fa-code"></i> 52</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- API Docs Section -->
-    <section id="api" class="section fade-in">
-      <h2>API Documentation</h2>
-      <div class="card">
-        <h3 style="margin-bottom: 20px;">Register a User</h3>
-        <p style="color: var(--text-secondary); margin-bottom: 16px;">Register a GitHub username to generate a portfolio.</p>
-        <pre><code>
-POST https://2at5n0ofhc.execute-api.us-east-1.amazonaws.com/dev/register
-Content-Type: application/json
-Accept: application/json
-
-{
-  "username": "your-github-username"
-}
-        </code><button onclick="copyText(this)" class="copy-btn" aria-label="Copy code"><i class="fas fa-copy"></i></button></pre>
-        <h3 style="margin: 28px 0 20px;">Fetch Portfolio Data</h3>
-        <p style="color: var(--text-secondary); margin-bottom: 16px;">Retrieve portfolio data for embedding or display.</p>
-        <pre><code>
-POST https://2at5n0ofhc.execute-api.us-east-1.amazonaws.com/dev/showcase
-Content-Type: application/json
-Accept: application/json
-
-{
-  "username": "your-github-username"
-}
-        </code><button onclick="copyText(this)" class="copy-btn" aria-label="Copy code"><i class="fas fa-copy"></i></button></pre>
-      </div>
-    </section>
-
-    <!-- Embed Section -->
-    <section id="embed" class="section fade-in">
-      <h2>Embed Your Portfolio</h2>
-      <div class="card">
-        <h3 style="margin-bottom: 20px;">Copy Embed Code</h3>
-        <p style="color: var(--text-secondary); margin-bottom: 16px;">Use this iframe to embed your portfolio on any website.</p>
-        <pre><code id="embed-code">
-<!-- GitShowcaseAPI Portfolio Embed -->
-<iframe
-  src="https://gitshowcaseapi.com/showcase.html?username=yourusername"
-  width="100%"
-  height="400"
-  frameborder="0"
-  scrolling="no"
-  style="border-radius: 8px; background: #161b22; max-width: 100%; margin: 0 auto; display: block;"
-  title="GitShowcaseAPI Portfolio"
-  loading="lazy"
->
-  <p>Browser does not support iframes. Visit <a href="https://gitshowcaseapi.com/showcase.html?username=yourusername">your portfolio</a>.</p>
-</iframe>
-        </code><button onclick="copyText(this)" class="copy-btn" aria-label="Copy embed code"><i class="fas fa-copy"></i></button></pre>
-      </div>
-    </section>
-
-    <!-- FAQs Section -->
-    <section id="faqs" class="section fade-in">
-      <h2>Frequently Asked Questions</h2>
-      <div class="faq-item">
-        <details>
-          <summary>How often does my portfolio update?</summary>
-          <p>Your portfolio syncs with GitHub hourly to reflect new activity.</p>
-        </details>
-      </div>
-      <div class="faq-item">
-        <details>
-          <summary>Is my data secure?</summary>
-          <p>We only access public GitHub data via secure APIs with encryption.</p>
-        </details>
-      </div>
-      <div class="faq-item">
-        <details>
-          <summary>Can I delete my portfolio?</summary>
-          <p>Contact us via the footer link to remove your data.</p>
-        </details>
-      </div>
-      <div class="faq-item">
-        <details>
-          <summary>Can I customize the portfolio design?</summary>
-          <p>Yes, you can customize the frontend on your own.</p>
-        </details>
-      </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="cta-section fade-in">
+    <section id="features" class="fade-in">
       <div class="container">
-        <h2>Showcase Your GitHub Projects</h2>
-        <p style="color: var(--text-secondary); max-width: 800px; margin: 20px auto; font-size: clamp(15px, 1.9vw, 16px);">
-          Build a professional portfolio in seconds and share your work with the world.
-        </p>
-        <a href="#register" class="btn" aria-label="Create portfolio now"><i class="fas fa-rocket"></i> Create Your Portfolio</a>
+        <h2 class="gradient-text">Why Choose Us?</h2>
+        <div class="features-grid">
+          <div class="card feature-card">
+            <i class="fas fa-bolt"></i>
+            <h3>Instant Setup</h3>
+            <p style="color: var(--text-dim);">One-click portfolio creation.</p>
+          </div>
+          <div class="card feature-card">
+            <i class="fas fa-sync"></i>
+            <h3>Live Sync</h3>
+            <p style="color: var(--text-dim);">Hourly GitHub updates.</p>
+          </div>
+          <div class="card feature-card">
+            <i class="fas fa-code"></i>
+            <h3>Developer-First</h3>
+            <p style="color: var(--text-dim);">Seamless API integration.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="register" class="fade-in" style="background: var(--card-bg);">
+      <div class="container">
+        <h2 class="gradient-text">Create Your Portfolio</h2>
+        <div class="card" style="max-width: 360px; margin: 0 auto;">
+          <label for="username" style="display: block; font-weight: 500; margin-bottom: 6px;">GitHub Username</label>
+          <input type="text" id="username" class="input" placeholder="e.g. username" aria-label="GitHub username">
+          <div style="display: flex; gap: 10px; margin-top: 10px;">
+            <button id="register-btn" onclick="register()" class="btn" style="flex: 1;"><i class="fas fa-user-plus"></i> Register</button>
+            <button id="preview-btn" onclick="preview()" class="btn hidden" style="flex: 1;"><i class="fas fa-eye"></i> Preview</button>
+          </div>
+          <p id="message" style="color: var(--text-dim);"></p>
+          <p id="error" class="message error"></p>
+          <p id="success" class="message success"></p>
+        </div>
+        <div id="preview" class="hidden" style="margin-top: 24px;">
+          <div class="card preview-card">
+            <div class="preview-header">
+              <img id="preview-avatar" src="" alt="User Avatar" loading="lazy">
+              <h3 id="preview-name"></h3>
+              <p id="preview-bio" class="preview-bio"></p>
+            </div>
+            <div class="stats-row">
+              <div class="card stat-card"><i class="fas fa-star"></i><p id="preview-stars">0</p><span>Stars</span></div>
+              <div class="card stat-card"><i class="fas fa-book"></i><p id="preview-repos">0</p><span>Repos</span></div>
+              <div class="card stat-card"><i class="fas fa-code"></i><p id="preview-commits">0</p><span>Commits</span></div>
+              <div class="card stat-card"><i class="fas fa-clock"></i><p id="preview-last-seen">Unknown</p><span>Last Seen</span></div>
+            </div>
+            <div id="preview-repos" class="repos-grid"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="api" class="fade-in">
+      <div class="container">
+        <h2 class="gradient-text">API Docs</h2>
+        <div class="card">
+          <h3>Register User</h3>
+          <p style="color: var(--text-dim); margin-bottom: 10px; text-align: left;">Generate a portfolio with your GitHub username.</p>
+          <pre><code>POST https://2at5n0ofhc.execute-api.us-east-1.amazonaws.com/dev/register
+Content-Type: application/json
+{
+  "username": "your-username"
+}</code><button class="copy-btn" onclick="copy(this)"><i class="fas fa-copy"></i></button></pre>
+        </div>
+        <div class="card" style="margin-top: 12px;">
+          <h3>Fetch Portfolio</h3>
+          <p style="color: var(--text-dim); margin-bottom: 10px; text-align: left;">Retrieve portfolio data.</p>
+          <pre><code>POST https://2at5n0ofhc.execute-api.us-east-1.amazonaws.com/dev/showcase
+Content-Type: application/json
+{
+  "username": "your-username"
+}</code><button class="copy-btn" onclick="copy(this)"><i class="fas fa-copy"></i></button></pre>
+        </div>
+      </div>
+    </section>
+
+    <section id="faqs" class="fade-in" style="background: var(--card-bg);">
+      <div class="container">
+        <h2 class="gradient-text">FAQs</h2>
+        <div style="max-width: 540px; margin: 0 auto;">
+          <div class="faq-item"><details><summary>Portfolio update frequency?</summary><p>Hourly sync with GitHub.</p></details></div>
+          <div class="faq-item"><details><summary>Data security?</summary><p>We use secure APIs for public GitHub data.</p></details></div>
+          <div class="faq-item"><details><summary>Delete portfolio?</summary><p>Contact us via footer link.</p></details></div>
+          <div class="faq-item"><details><summary>Customize design?</summary><p>Frontend is customizable.</p></details></div>
+        </div>
       </div>
     </section>
   </main>
 
-  <!-- Footer -->
-  <footer class="fade-in">
+  <footer>
     <div class="container">
-      <p>GitShowcaseAPI v1.0 | © 2025 All Rights Reserved</p>
-      <div class="footer-social">
-        <a href="https://github.com/Kartikeyy-pandeyy/GitShowcaseAPI" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
-      </div>
+      <p>GitShowcaseAPI v1.0 | © 2025</p>
+      <p><a href="https://github.com/Kartikeyy-pandeyy/GitShowcaseAPI" target="_blank"><i class="fab fa-github"></i> GitHub</a></p>
     </div>
   </footer>
 
   <div id="toast" class="toast">Copied!</div>
 
-  <script defer>
-    // Toggle Navbar
-    function toggleNavbar() {
-      const navbarLinks = document.querySelector('.navbar-links');
-      navbarLinks.classList.toggle('active');
-    }
-
-    // Debounce utility
-    function debounce(func, wait) {
-      let timeout;
-      return function (...args) {
-        clearTimeout(timeout);
-        timeout = setTimeout(() => func.apply(this, args), wait);
-      };
-    }
-
-    // Show toast
-    function showToast() {
-      const toast = document.getElementById('toast');
-      toast.classList.add('show');
-      setTimeout(() => toast.classList.remove('show'), 2000);
-    }
-
-    // Show error
-    function showError(message) {
-      const error = document.getElementById('error');
-      const success = document.getElementById('success');
-      error.textContent = message;
-      error.style.display = 'block';
-      success.style.display = 'none';
-      setTimeout(() => error.style.display = 'none', 5000);
-    }
-
-    // Show success
-    function showSuccess(message) {
-      const error = document.getElementById('error');
-      const success = document.getElementById('success');
-      success.textContent = message;
-      success.style.display = 'block';
-      error.style.display = 'none';
-      setTimeout(() => success.style.display = 'none', 5000);
-    }
-
-    // Copy text
-    function copyText(button) {
-      const code = button.previousElementSibling.textContent;
-      const copyBtn = button;
-      if (navigator.clipboard) {
-        navigator.clipboard.writeText(code).then(() => {
-          copyBtn.classList.add('copied');
-          showToast();
-          setTimeout(() => copyBtn.classList.remove('copied'), 1000);
-        }).catch(() => showError('Failed to copy.'));
-      } else {
-        const textarea = document.createElement('textarea');
-        textarea.value = code;
-        document.body.appendChild(textarea);
-        textarea.select();
-        try {
-          document.execCommand('copy');
-          copyBtn.classList.add('copied');
-          showToast();
-          setTimeout(() => copyBtn.classList.remove('copied'), 1000);
-        } catch {
-          showError('Failed to copy.');
-        }
-        document.body.removeChild(textarea);
-      }
-    }
-
-    // Validate username
-    function validateUsername(username) {
-      if (!username) return 'Enter a username.';
-      if (!/^[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,37}[a-zA-Z0-9])?$/.test(username)) {
-        return 'Invalid username. Use 1-39 alphanumeric characters or hyphens.';
-      }
-      return null;
-    }
-
-    // Handle API errors
-    function handleApiError(response, parsedBody) {
-      if (!response.ok) {
-        if (response.status === 400) return 'Invalid username.';
-        if (response.status === 403 || response.status === 429) return 'Rate limit exceeded. Try again later.';
-        return parsedBody?.error || 'Request failed.';
-      }
-      return null;
-    }
-
-    // Format date
-    function formatDate(isoString) {
-      if (!isoString) return 'Unknown';
-      const date = new Date(isoString);
-      return date.toLocaleDateString('en-US', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
+  <script>
+    // Starfield
+    const canvas = document.getElementById('stars');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    const stars = Array(200).fill().map(() => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      z: Math.random() * 3 + 1,
+      speed: Math.random() * 0.5 + 0.2
+    }));
+    const comets = Array(5).fill().map(() => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      speedX: (Math.random() - 0.5) * 2,
+      speedY: (Math.random() - 0.5) * 2,
+      length: Math.random() * 10 + 5
+    }));
+    function drawStars() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      stars.forEach(s => {
+        s.z -= s.speed * 0.01;
+        if (s.z <= 0) s.z = 4;
+        const sx = s.x / s.z + canvas.width / 2;
+        const sy = s.y / s.z + canvas.height / 2;
+        const size = (4 - s.z) / 2;
+        ctx.beginPath();
+        ctx.arc(sx, sy, size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(224, 231, 255, ${1 - s.z / 4})`;
+        ctx.fill();
       });
+      comets.forEach(c => {
+        c.x += c.speedX;
+        c.y += c.speedY;
+        if (c.x < 0 || c.x > canvas.width || c.y < 0 || c.y > canvas.height) {
+          c.x = Math.random() * canvas.width;
+          c.y = Math.random() * canvas.height;
+          c.speedX = (Math.random() - 0.5) * 2;
+          c.speedY = (Math.random() - 0.5) * 2;
+        }
+        ctx.beginPath();
+        ctx.moveTo(c.x, c.y);
+        ctx.lineTo(c.x - c.speedX * c.length, c.y - c.speedY * c.length);
+        ctx.strokeStyle = `rgba(94, 234, 212, 0.6)`;
+        ctx.lineWidth = 2;
+        ctx.stroke();
+      });
+      requestAnimationFrame(drawStars);
     }
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+    drawStars();
 
-    // Register
+    const $ = (id) => document.getElementById(id);
+    const toggleNav = () => document.querySelector('.nav-links').classList.toggle('active');
+    const debounce = (fn, wait) => { let t; return (...args) => { clearTimeout(t); t = setTimeout(() => fn(...args), wait); }; };
+    const showToast = () => { $('toast').classList.add('show'); setTimeout(() => $('toast').classList.remove('show'), 1200); };
+    const showMsg = (id, text, err) => { const el = $(id); el.textContent = text; el.style.display = 'block'; setTimeout(() => el.style.display = 'none', 3500); };
+    const copy = (btn) => navigator.clipboard.writeText(btn.previousElementSibling.textContent).then(showToast).catch(() => showMsg('error', 'Copy failed', true));
+    const validate = (u) => !u ? 'Enter username' : /^[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,37}[a-zA-Z0-9])?$/.test(u) ? null : 'Invalid username';
+    const formatDate = (d) => d ? new Date(d).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) : 'Unknown';
+
     const register = debounce(async () => {
-      const username = document.getElementById('username').value.trim();
-      const message = document.getElementById('message');
-      const registerBtn = document.getElementById('register-btn');
-      const previewBtn = document.getElementById('preview-btn');
-
-      message.textContent = '';
-      const validationError = validateUsername(username);
-      if (validationError) {
-        showError(validationError);
-        return;
-      }
-
-      message.textContent = 'Registering...';
-      registerBtn.disabled = true;
-      registerBtn.classList.add('loading');
-
+      const u = $('username').value.trim(), msg = $('message'), rBtn = $('register-btn'), pBtn = $('preview-btn');
+      msg.textContent = '';
+      const err = validate(u);
+      if (err) return showMsg('error', err, true);
+      msg.textContent = 'Registering...';
+      rBtn.disabled = true;
       try {
-        const response = await fetch('https://2at5n0ofhc.execute-api.us-east-1.amazonaws.com/dev/register', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-          },
-          body: JSON.stringify({ username })
+        const res = await fetch('https://2at5n0ofhc.execute-api.us-east-1.amazonaws.com/dev/register', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ username: u })
         });
-
-        const data = await response.json();
-        const parsedBody = typeof data.body === 'string' ? JSON.parse(data.body) : data.body;
-
-        const apiError = handleApiError(response, parsedBody);
-        if (apiError) {
-          showError(apiError);
-          return;
-        }
-
-        showSuccess('Portfolio registered successfully!');
-        message.innerHTML = `Registered! <a href="#preview">Preview</a> your portfolio.`;
-        previewBtn.classList.remove('hidden');
-        document.getElementById('embed-code').textContent = `
-<!-- GitShowcaseAPI Portfolio Embed -->
-<iframe
-  src="https://gitshowcaseapi.com/showcase.html?username=${username}"
-  width="100%"
-  height="400"
-  frameborder="0"
-  scrolling="no"
-  style="border-radius: 8px; background: #161b22; max-width: 100%; margin: 0 auto; display: block;"
-  title="GitShowcaseAPI Portfolio"
-  loading="lazy"
->
-  <p>Browser does not support iframes. Visit <a href="https://gitshowcaseapi.com/showcase.html?username=${username}">your portfolio</a>.</p>
-</iframe>`;
-      } catch (error) {
-        showError(`Error: ${error.message || 'Network issue.'}`);
+        const data = await res.json();
+        const body = typeof data.body === 'string' ? JSON.parse(data.body) : data.body;
+        if (!res.ok) throw new Error(res.status === 400 ? 'Invalid username' : res.status === 429 ? 'Rate limit exceeded' : body?.error || 'Request failed');
+        showMsg('success', 'Portfolio registered!');
+        msg.innerHTML = `Registered! <a href="#preview" style="color: var(--link);">Preview</a>`;
+        pBtn.classList.remove('hidden');
+      } catch (e) {
+        showMsg('error', e.message, true);
       } finally {
-        registerBtn.disabled = false;
-        registerBtn.classList.remove('loading');
+        rBtn.disabled = false;
       }
     }, 300);
 
-    // Preview profile
-    const previewProfile = debounce(async () => {
-      const username = document.getElementById('username').value.trim();
-      const message = document.getElementById('message');
-      const previewSection = document.getElementById('preview');
-      const previewBtn = document.getElementById('preview-btn');
-
-      message.textContent = '';
-      const validationError = validateUsername(username);
-      if (validationError) {
-        showError(validationError);
-        return;
-      }
-
-      message.textContent = 'Loading preview...';
-      previewBtn.disabled = true;
-      previewBtn.classList.add('loading');
-
+    const preview = debounce(async () => {
+      const u = $('username').value.trim(), msg = $('message'), pSec = $('preview'), pBtn = $('preview-btn');
+      msg.textContent = '';
+      const err = validate(u);
+      if (err) return showMsg('error', err, true);
+      msg.textContent = 'Loading...';
+      pBtn.disabled = true;
       try {
-        const response = await fetch('https://2at5n0ofhc.execute-api.us-east-1.amazonaws.com/dev/showcase', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-          },
-          body: JSON.stringify({ username })
+        const res = await fetch('https://2at5n0ofhc.execute-api.us-east-1.amazonaws.com/dev/showcase', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ username: u })
         });
-
-        const data = await response.json();
-        const parsedBody = typeof data.body === 'string' ? JSON.parse(data.body) : data.body;
-
-        const apiError = handleApiError(response, parsedBody);
-        if (apiError) {
-          showError(apiError);
-          return;
-        }
-
-        const profileData = {
-          avatar_url: parsedBody.avatar_url || 'https://github.githubassets.com/images/modules/profile/profile-avatar-fallback.png',
-          name: parsedBody.name || username,
-          username: parsedBody.username || username,
-          bio: parsedBody.bio || '',
-          total_stars: parsedBody.total_stars || 0,
-          total_repos: parsedBody.total_repos || 0,
-          total_commits: parsedBody.total_commits || 0,
-          last_seen: parsedBody.last_seen || null,
-          top_repos: parsedBody.top_repos || []
-        };
-
-        document.getElementById('preview-avatar').src = profileData.avatar_url;
-        document.getElementById('preview-name').textContent = profileData.name;
-        document.getElementById('preview-bio').textContent = profileData.bio;
-        document.getElementById('preview-stars').textContent = profileData.total_stars;
-        document.getElementById('preview-repos').textContent = profileData.total_repos;
-        document.getElementById('preview-commits').textContent = profileData.total_commits;
-        document.getElementById('preview-last-seen').textContent = formatDate(profileData.last_seen);
-
-        const reposContainer = document.getElementById('preview-repos');
-        reposContainer.innerHTML = '';
-        if (profileData.top_repos.length > 0) {
-          profileData.top_repos.forEach(repo => {
-            const repoElement = document.createElement('div');
-            repoElement.className = 'repo-card';
-            repoElement.innerHTML = `
-              <a href="${repo.url}" target="_blank">${repo.name}</a>
-              <div class="repo-stats">
-                <span><i class="fas fa-star"></i> ${repo.stars}</span>
-                <span><i class="fas fa-code-branch"></i> ${repo.forks}</span>
-                <span><i class="fas fa-code"></i> ${repo.commits}</span>
-              </div>
-            `;
-            reposContainer.appendChild(repoElement);
-          });
-        } else {
-          reposContainer.innerHTML = '<p style="color: var(--text-secondary); text-align: center;">No repositories found.</p>';
-        }
-
-        previewSection.classList.remove('hidden');
-        previewSection.scrollIntoView({ behavior: 'smooth' });
-        showSuccess('Preview loaded successfully!');
-      } catch (error) {
-        showError(`Error: ${error.message || 'Cannot load preview.'}`);
+        const data = await res.json();
+        const body = typeof data.body === 'string' ? JSON.parse(data.body) : data.body;
+        if (!res.ok) throw new Error(res.status === 400 ? 'Invalid username' : res.status === 429 ? 'Rate limit exceeded' : body?.error || 'Request failed');
+        $('preview-avatar').src = body.avatar_url || 'https://github.githubassets.com/images/modules/profile/profile-avatar-fallback.png';
+        $('preview-name').textContent = body.name || u;
+        $('preview-bio').textContent = body.bio || '';
+        $('preview-stars').textContent = body.total_stars || 0;
+        $('preview-repos').textContent = body.total_repos || 0;
+        $('preview-commits').textContent = body.total_commits || 0;
+        $('preview-last-seen').textContent = formatDate(body.last_seen);
+        $('preview-repos').innerHTML = body.top_repos?.length ? body.top_repos.map(r => `
+          <div class="card repo-card">
+            <a href="${r.url}" target="_blank">${r.name}</a>
+            <div class="repo-stats">
+              <span><i class="fas fa-star"></i> ${r.stars}</span>
+              <span><i class="fas fa-code-branch"></i> ${r.forks}</span>
+              <span><i class="fas fa-code"></i> ${r.commits}</span>
+            </div>
+          </div>
+        `).join('') : '<p style="color: var(--text-dim); text-align: center;">No repos found.</p>';
+        pSec.classList.remove('hidden');
+        pSec.scrollIntoView({ behavior: 'smooth' });
+        showMsg('success', 'Preview loaded!');
+      } catch (e) {
+        showMsg('error', e.message, true);
       } finally {
-        previewBtn.disabled = false;
-        previewBtn.classList.remove('loading');
+        pBtn.disabled = false;
       }
     }, 300);
 
-    // Smooth scroll
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', e => {
-        e.preventDefault();
-        document.querySelector(anchor.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
-      });
-    });
+    document.querySelectorAll('a[href^="#"]').forEach(a => a.addEventListener('click', e => {
+      e.preventDefault();
+      document.querySelector(a.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+    }));
 
-    // Trigger fade-in animations on scroll
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('fade-in');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.fade-in').forEach(element => {
-      observer.observe(element);
-    });
+    new IntersectionObserver(entries => entries.forEach(e => e.isIntersecting && e.target.classList.add('fade-in')), { threshold: 0.3 })
+      .observe(document.querySelectorAll('.fade-in'));
   </script>
 </body>
 </html>
