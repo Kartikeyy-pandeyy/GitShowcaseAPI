@@ -92,8 +92,14 @@
       width: 100%;
       height: 100%;
       z-index: -1;
-      opacity: 0.95;
-      background: radial-gradient(ellipse at center, rgba(8, 12, 18, 0.8) 0%, rgba(8, 12, 18, 1) 100%);
+      opacity: 1;
+      background:
+        radial-gradient(ellipse at 20% 30%, rgba(46, 160, 67, 0.25) 0%, transparent 40%),
+        radial-gradient(ellipse at 80% 70%, rgba(96, 165, 250, 0.2) 0%, transparent 40%),
+        radial-gradient(ellipse at center, rgba(2, 6, 12, 0.95) 0%, rgba(0, 2, 8, 1) 100%);
+      image-rendering: crisp-edges;
+      image-rendering: -webkit-optimize-contrast;
+      filter: contrast(1.3) brightness(1.1);
     }
 
     .star-layers {
@@ -104,19 +110,30 @@
       height: 100%;
       z-index: -2;
       background:
-        radial-gradient(2px 2px at 20px 30px, #e0e7ff, transparent),
-        radial-gradient(2px 2px at 40px 70px, rgba(96, 165, 250, 0.8), transparent),
-        radial-gradient(1px 1px at 90px 40px, rgba(46, 160, 67, 0.6), transparent),
-        radial-gradient(1px 1px at 130px 80px, #e0e7ff, transparent),
-        radial-gradient(2px 2px at 160px 30px, rgba(96, 165, 250, 0.7), transparent);
+        radial-gradient(1px 1px at 15px 25px, rgba(255, 255, 255, 0.9), transparent),
+        radial-gradient(2px 2px at 45px 75px, rgba(96, 165, 250, 0.95), transparent),
+        radial-gradient(1px 1px at 85px 35px, rgba(46, 160, 67, 0.8), transparent),
+        radial-gradient(1.5px 1.5px at 125px 85px, rgba(255, 255, 255, 0.85), transparent),
+        radial-gradient(2px 2px at 165px 25px, rgba(96, 165, 250, 0.9), transparent),
+        radial-gradient(1px 1px at 35px 60px, rgba(147, 197, 253, 0.7), transparent),
+        radial-gradient(1px 1px at 110px 15px, rgba(34, 197, 94, 0.6), transparent),
+        radial-gradient(1.5px 1.5px at 180px 65px, rgba(255, 255, 255, 0.75), transparent);
       background-repeat: repeat;
-      background-size: 200px 100px;
-      animation: sparkle 20s linear infinite;
+      background-size: 220px 120px;
+      animation: sparkle 25s linear infinite, twinkle 8s ease-in-out infinite alternate;
+      image-rendering: crisp-edges;
+      image-rendering: -webkit-optimize-contrast;
     }
 
     @keyframes sparkle {
-      from { transform: translateX(0); }
-      to { transform: translateX(-200px); }
+      from { transform: translateX(0) translateY(0); }
+      to { transform: translateX(-220px) translateY(-10px); }
+    }
+
+    @keyframes twinkle {
+      0% { opacity: 0.8; filter: brightness(1); }
+      50% { opacity: 1; filter: brightness(1.2) contrast(1.1); }
+      100% { opacity: 0.9; filter: brightness(0.9) contrast(1.05); }
     }
 
     .container {
@@ -2187,6 +2204,134 @@
         font-size: 1.1rem;
       }
     }
+
+    /* Very small mobile devices (max-width: 360px) */
+    @media (max-width: 360px) {
+      .nav-logo { font-size: 1.1rem; }
+      .nav-logo img { width: 24px; height: 24px; }
+      nav .container { padding: 8px 12px; height: 52px; }
+      body { padding-top: 52px; scroll-padding-top: 52px; }
+    }
+
+    /* Extra small mobile devices (max-width: 320px) */
+    @media (max-width: 320px) {
+      .nav-logo { font-size: 0.95rem; }
+      .nav-logo img { width: 22px; height: 22px; }
+      nav .container { padding: 6px 10px; height: 48px; }
+      body { padding-top: 48px; scroll-padding-top: 48px; }
+
+      /* Fix main heading overflow on very small screens */
+      h1.gradient-text { font-size: 1.5rem !important; line-height: 1.2 !important; }
+    }
+
+    /* iPhone SE and similar small devices (max-width: 375px) */
+    @media (max-width: 375px) {
+      /* Fix main heading overflow */
+      h1.gradient-text { font-size: 1.7rem !important; line-height: 1.2 !important; }
+    }
+
+    /* Small mobile devices (max-width: 480px) - enhance existing rules */
+    @media (max-width: 480px) {
+      /* Override inline styles for main heading */
+      h1.gradient-text { font-size: 1.8rem !important; line-height: 1.1 !important; }
+    }
+
+    /* Clean mobile header - logo and name only */
+    @media (max-width: 768px) {
+      /* Hide navigation links completely on mobile */
+      .nav-links {
+        display: none !important;
+      }
+
+      /* Hide hamburger menu button completely */
+      .nav-toggle {
+        display: none !important;
+      }
+
+      /* Center the logo and make it prominent */
+      nav .container {
+        justify-content: center !important;
+        padding: 12px 16px !important;
+      }
+
+      .nav-logo {
+        font-size: 1.4rem !important;
+        gap: 10px !important;
+      }
+
+      .nav-logo img {
+        width: 32px !important;
+        height: 32px !important;
+      }
+
+      /* When scrolled, make it more compact but still centered */
+      nav.scrolled .nav-logo {
+        font-size: 1.2rem !important;
+        gap: 8px !important;
+      }
+
+      nav.scrolled .nav-logo img {
+        width: 28px !important;
+        height: 28px !important;
+      }
+
+      nav.scrolled .container {
+        padding: 10px 16px !important;
+        height: 50px !important;
+      }
+
+      body {
+        padding-top: 60px !important;
+        scroll-padding-top: 60px !important;
+      }
+
+      nav.scrolled + body,
+      nav.scrolled ~ body {
+        padding-top: 50px !important;
+        scroll-padding-top: 50px !important;
+      }
+    }
+
+    /* Smaller mobile optimizations */
+    @media (max-width: 480px) {
+      .nav-logo {
+        font-size: 1.2rem !important;
+      }
+
+      .nav-logo img {
+        width: 28px !important;
+        height: 28px !important;
+      }
+
+      nav.scrolled .nav-logo {
+        font-size: 1.1rem !important;
+      }
+
+      nav.scrolled .nav-logo img {
+        width: 24px !important;
+        height: 24px !important;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .nav-logo {
+        font-size: 1.1rem !important;
+      }
+
+      .nav-logo img {
+        width: 26px !important;
+        height: 26px !important;
+      }
+
+      nav.scrolled .nav-logo {
+        font-size: 1rem !important;
+      }
+
+      nav.scrolled .nav-logo img {
+        width: 22px !important;
+        height: 22px !important;
+      }
+    }
   </style>
 </head>
 <body>
@@ -2341,7 +2486,7 @@
                         <i class="fas fa-github" style="font-size: 3rem; color: var(--accent); margin-bottom: 24px; opacity: 0.7;"></i>
                         <h3 style="color: var(--text); margin-bottom: 16px; font-size: 1.4rem;">Portfolio Preview</h3>
                         <p style="color: var(--text-dim); font-size: 1rem; line-height: 1.6; margin-bottom: 24px;">
-                          Enter your GitHub username above and click <strong style="color: var(--accent);">Preview</strong> to see how your professional portfolio will look.
+                          Enter your GitHub username above and click <strong style="color: var(--accent);">Preview</strong> to see how your professional portfolio can look.
                         </p>
                         <div class="preview-sample-hint">
                           <i class="fas fa-lightbulb" style="color: var(--link); margin-right: 8px;"></i>
@@ -2625,14 +2770,14 @@ Content-Type: application/json
     const canvas = document.getElementById('stars');
     const ctx = canvas.getContext('2d');
 
-    // Smart quality scaling based on device capabilities
+    // Enhanced quality scaling for ultra-crisp rendering
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     const isLowEnd = navigator.hardwareConcurrency <= 4 || isMobile;
     const basePixelRatio = window.devicePixelRatio || 1;
 
-    // Adaptive quality settings
-    let devicePixelRatio = isLowEnd ? Math.min(basePixelRatio, 2) : Math.min(basePixelRatio, 3);
-    const superSampling = isLowEnd ? 1.5 : 2;
+    // Ultra-high quality settings for maximum clarity
+    let devicePixelRatio = isLowEnd ? Math.min(basePixelRatio, 2.5) : Math.min(basePixelRatio, 4);
+    const superSampling = isLowEnd ? 2 : 3;
     const effectiveRatio = devicePixelRatio * superSampling;
 
     // Performance monitoring
@@ -2647,16 +2792,23 @@ Content-Type: application/json
       canvas.style.height = window.innerHeight + 'px';
       ctx.scale(effectiveRatio, effectiveRatio);
 
-      // Ultra-crisp rendering settings
+      // Ultra-crisp rendering settings for maximum clarity
       ctx.imageSmoothingEnabled = true;
       ctx.imageSmoothingQuality = 'high';
+      ctx.textRenderingOptimization = 'optimizeQuality';
+      ctx.globalCompositeOperation = 'source-over';
+
+      // Force hardware acceleration for smoother performance
+      canvas.style.transform = 'translateZ(0)';
+      canvas.style.backfaceVisibility = 'hidden';
+      canvas.style.perspective = '1000px';
+      canvas.style.willChange = 'transform';
     }
     resizeCanvas();
 
-    // Adaptive particle counts based on device performance
-    const starCount = isLowEnd ? 200 : 300;
-    const cometCount = isLowEnd ? 4 : 8;
-    const nebulaCount = isLowEnd ? 6 : 12;
+    // Enhanced particle counts for richer visual experience
+    const starCount = isLowEnd ? 350 : 500;
+    const nebulaCount = isLowEnd ? 8 : 18;
 
     const stars = Array(starCount).fill().map(() => ({
       x: (Math.random() - 0.5) * canvas.width,
@@ -2667,15 +2819,6 @@ Content-Type: application/json
       twinkle: Math.random() * Math.PI * 2
     }));
 
-    const comets = Array(cometCount).fill().map(() => ({
-      x: Math.random() * window.innerWidth,
-      y: Math.random() * window.innerHeight,
-      speedX: (Math.random() - 0.5) * 3,
-      speedY: (Math.random() - 0.5) * 3,
-      length: Math.random() * 15 + 8,
-      opacity: Math.random() * 0.5 + 0.3,
-      trail: []
-    }));
 
     const nebula = Array(nebulaCount).fill().map(() => ({
       x: Math.random() * window.innerWidth,
@@ -2758,34 +2901,58 @@ Content-Type: application/json
         const alpha = Math.min(1, brightness * (1 - s.z / 5));
 
         if (sx >= -10 && sx <= window.innerWidth + 10 && sy >= -10 && sy <= window.innerHeight + 10) {
-          // Multi-layered star rendering for realistic appearance
+          // Ultra-crisp multi-layered star rendering with enhanced contrast
 
-          // Core star with perfect anti-aliasing
-          ctx.beginPath();
-          ctx.arc(sx, sy, baseSize, 0, Math.PI * 2);
-          ctx.fillStyle = `rgba(255, 255, 255, ${alpha})`;
-          ctx.fill();
-
-          // Subtle color tint based on distance (only for better performance)
-          if (!isLowEnd || s.z < 3) {
-            const colorTemp = s.z < 2.5 ? [255, 245, 235] : s.z < 3.5 ? [245, 250, 255] : [235, 245, 255];
-            ctx.beginPath();
-            ctx.arc(sx, sy, baseSize * 0.8, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(${colorTemp[0]}, ${colorTemp[1]}, ${colorTemp[2]}, ${alpha * 0.9})`;
-            ctx.fill();
-          }
-
-          // Enhanced glow for closer stars with gradient (adaptive quality)
-          if (s.z < 2.5 && (!isLowEnd || averageFPS > 45)) {
-            const glowGradient = ctx.createRadialGradient(sx, sy, 0, sx, sy, baseSize * 4);
-            glowGradient.addColorStop(0, `rgba(200, 220, 255, ${alpha * 0.3})`);
-            glowGradient.addColorStop(0.3, `rgba(150, 200, 255, ${alpha * 0.2})`);
+          // Enhanced glow for depth and contrast (render first for layering)
+          if (s.z < 3.5 && (!isLowEnd || averageFPS > 40)) {
+            const glowSize = baseSize * (s.z < 2 ? 6 : 4);
+            const glowGradient = ctx.createRadialGradient(sx, sy, 0, sx, sy, glowSize);
+            glowGradient.addColorStop(0, `rgba(255, 255, 255, ${alpha * 0.4})`);
+            glowGradient.addColorStop(0.2, `rgba(220, 240, 255, ${alpha * 0.25})`);
+            glowGradient.addColorStop(0.5, `rgba(180, 220, 255, ${alpha * 0.15})`);
             glowGradient.addColorStop(1, 'transparent');
 
             ctx.fillStyle = glowGradient;
             ctx.beginPath();
-            ctx.arc(sx, sy, baseSize * 4, 0, Math.PI * 2);
+            ctx.arc(sx, sy, glowSize, 0, Math.PI * 2);
             ctx.fill();
+          }
+
+          // Core star with ultra-crisp rendering and enhanced contrast
+          ctx.beginPath();
+          ctx.arc(sx, sy, baseSize * 1.2, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(255, 255, 255, ${Math.min(1, alpha * 1.3)})`;
+          ctx.fill();
+
+          // High-contrast color core based on distance with enhanced visibility
+          const colorTemp = s.z < 2 ? [255, 250, 240, 0.95] :
+                           s.z < 3 ? [250, 255, 255, 0.9] :
+                           s.z < 4 ? [240, 250, 255, 0.85] : [230, 245, 255, 0.8];
+
+          ctx.beginPath();
+          ctx.arc(sx, sy, baseSize * 0.9, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(${colorTemp[0]}, ${colorTemp[1]}, ${colorTemp[2]}, ${alpha * colorTemp[3]})`;
+          ctx.fill();
+
+          // Ultra-bright center point for maximum contrast
+          ctx.beginPath();
+          ctx.arc(sx, sy, baseSize * 0.4, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(255, 255, 255, ${Math.min(1, alpha * 1.5)})`;
+          ctx.fill();
+
+          // Stellar cross-flare effect for brighter stars
+          if (s.z < 2.5 && brightness > 0.7 && (!isLowEnd || averageFPS > 50)) {
+            const flareLength = baseSize * 8;
+            ctx.strokeStyle = `rgba(255, 255, 255, ${alpha * 0.4})`;
+            ctx.lineWidth = 0.3;
+            ctx.beginPath();
+            // Horizontal flare
+            ctx.moveTo(sx - flareLength, sy);
+            ctx.lineTo(sx + flareLength, sy);
+            // Vertical flare
+            ctx.moveTo(sx, sy - flareLength);
+            ctx.lineTo(sx, sy + flareLength);
+            ctx.stroke();
           }
 
           // Subtle diffraction spikes for very bright stars (premium quality only)
@@ -2802,67 +2969,6 @@ Content-Type: application/json
         }
       });
 
-      // Draw ultra-realistic comets with HD trails
-      comets.forEach(c => {
-        c.x += c.speedX;
-        c.y += c.speedY;
-
-        c.trail.push({ x: c.x, y: c.y });
-        if (c.trail.length > 20) c.trail.shift();
-
-        if (c.x < -50 || c.x > window.innerWidth + 50 || c.y < -50 || c.y > window.innerHeight + 50) {
-          c.x = Math.random() * window.innerWidth;
-          c.y = Math.random() * window.innerHeight;
-          c.speedX = (Math.random() - 0.5) * 3;
-          c.speedY = (Math.random() - 0.5) * 3;
-          c.trail = [];
-        }
-
-        // Draw high-definition comet trail with gradient
-        if (c.trail.length > 1) {
-          for (let i = 0; i < c.trail.length - 1; i++) {
-            const segment = c.trail[i];
-            const nextSegment = c.trail[i + 1];
-            const progress = i / c.trail.length;
-            const opacity = progress * c.opacity * 0.9;
-            const width = Math.max(0.3, 4 * progress);
-
-            // Create gradient for each trail segment
-            const gradient = ctx.createLinearGradient(
-              segment.x, segment.y, nextSegment.x, nextSegment.y
-            );
-            gradient.addColorStop(0, `rgba(94, 234, 212, ${opacity * 0.7})`);
-            gradient.addColorStop(0.5, `rgba(129, 230, 217, ${opacity})`);
-            gradient.addColorStop(1, `rgba(165, 243, 252, ${opacity * 0.8})`);
-
-            ctx.beginPath();
-            ctx.moveTo(segment.x, segment.y);
-            ctx.lineTo(nextSegment.x, nextSegment.y);
-            ctx.strokeStyle = gradient;
-            ctx.lineWidth = width;
-            ctx.lineCap = 'round';
-            ctx.stroke();
-          }
-        }
-
-        // Draw comet head with realistic glow
-        const headGradient = ctx.createRadialGradient(c.x, c.y, 0, c.x, c.y, 8);
-        headGradient.addColorStop(0, `rgba(255, 255, 255, ${c.opacity})`);
-        headGradient.addColorStop(0.3, `rgba(94, 234, 212, ${c.opacity * 0.9})`);
-        headGradient.addColorStop(0.6, `rgba(129, 230, 217, ${c.opacity * 0.6})`);
-        headGradient.addColorStop(1, 'transparent');
-
-        ctx.fillStyle = headGradient;
-        ctx.beginPath();
-        ctx.arc(c.x, c.y, 8, 0, Math.PI * 2);
-        ctx.fill();
-
-        // Bright core
-        ctx.beginPath();
-        ctx.arc(c.x, c.y, 2.5, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(255, 255, 255, ${c.opacity})`;
-        ctx.fill();
-      });
 
       requestAnimationFrame(drawStars);
     }
