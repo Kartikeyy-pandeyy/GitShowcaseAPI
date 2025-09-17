@@ -3042,18 +3042,8 @@ Content-Type: application/json
         nav.classList.remove('scrolled');
       }
 
-      // Auto-hide/show nav on scroll (mobile enhancement)
-      if (window.innerWidth <= 768) {
-        if (currentScrollY > lastScrollY && currentScrollY > 100) {
-          // Scrolling down - hide nav
-          nav.style.transform = 'translateY(-100%)';
-        } else {
-          // Scrolling up - show nav
-          nav.style.transform = 'translateY(0)';
-        }
-      } else {
-        nav.style.transform = 'translateY(0)';
-      }
+      // Keep nav always visible on all screen sizes
+      nav.style.transform = 'translateY(0)';
 
       lastScrollY = currentScrollY;
       ticking = false;
